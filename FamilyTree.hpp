@@ -1,36 +1,41 @@
-#include <iostream>
-#include <string>
-
+#pragma once
+#include "iostream"
 using namespace std;
 
 namespace family{
-    static bool found=false;
-    class Tree{
-
-    private :
-
-        string MyName;
-        Tree *Mother;
-        Tree *Father;
-        int depth;
-        int key; //0 or 1
-        string rel;
-        bool found;
-
-    public :
-
-        Tree(string name);
-
-        Tree addFather(string name, string father);
-        Tree addMother(string name, string mother);
-        string relation(string name);
-        string find(string rel);
-        void display();
-        void remove(string name);
-        Tree curr(Tree *now,string name);
-        string curr2(Tree *now,string name,string ans);
-        string find_helper(Tree *now, string name);
-
+    class node{
+    public:
+        string data;
+        node* left;
+        node* right;
+        node(){
+            data="";
+            left=NULL;
+            right=NULL;
+        }
+        node(string name){
+            data=name;
+            left=NULL;
+            right=NULL;
+        }
     };
 
-}
+    class Tree{
+
+        node person;
+        int size;
+
+    public:
+
+        Tree(string name) {
+            node n(name);
+            person=n;
+        }
+        Tree addFather(string person, string name);
+        Tree addMother(string person, string name);
+        string relation(string name);
+        string find(string name);
+        void display();
+        void remove(string name);
+    };
+};
